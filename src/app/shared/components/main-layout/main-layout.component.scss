@@ -1,0 +1,17 @@
+@import "variables";
+@import "mixins";
+
+.nav {
+  height: 70px;
+  background-color: var(--color-main);
+  padding: 0 80px;
+
+  .logo {
+    display: block;
+    padding: 11px 20px;
+  }
+}
+
+.container {
+  padding: 60px 370px;
+}

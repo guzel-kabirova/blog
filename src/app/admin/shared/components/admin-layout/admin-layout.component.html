@@ -1,0 +1,18 @@
+<nav class="nav">
+  <img src="../../../assets/icons/blogLogo.svg" alt="blog logo" class="logo">
+  <ul>
+
+    <li>
+      <a [routerLink]="['/admin', 'dashboard']" routerLinkActive="activeLink" [routerLinkActiveOptions]="{exact: true}">Главная</a>
+    </li>
+    <li>
+      <a [routerLink]="['/admin', 'create']" routerLinkActive="activeLink" [routerLinkActiveOptions]="{exact: true}">Создать</a>
+    </li>
+    <li>
+      <a href="#" (click)="logout($event)">Выйти</a>
+    </li>
+  </ul>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

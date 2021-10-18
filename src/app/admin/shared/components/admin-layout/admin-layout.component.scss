@@ -1,0 +1,40 @@
+.nav {
+  height: 70px;
+  background-color: var(--color-main);
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .logo {
+    display: block;
+    padding: 11px 20px;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin-right: 20px;
+      a {
+        color: var(--color-main-light);
+        text-decoration: none;
+        font: var(--font-nav);
+      }
+
+      .activeLink {
+        font: var(--font-nav-bold);
+        color: var(--color-white);
+
+      }
+    }
+  }
+}
+
+.container {
+  margin: 60px auto;
+  display: flex;
+  justify-content: center;
+}

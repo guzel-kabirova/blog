@@ -1,6 +1,6 @@
 @import "mixins";
 @import "variables";
 
-div {
-  @include center-all;
+* {
+  box-sizing: border-box;
 }

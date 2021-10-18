@@ -1,0 +1,30 @@
+.post {
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-default);
+  padding: 20px 30px;
+  border-radius: var(--radius);
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  cursor: pointer;
+
+  .title {
+    color: var(--color-black);
+    font: var(--font-subtitle);
+    margin: 0;
+  }
+
+  .post-author {
+    color: var(--color-grey-dark);
+    font: var(--font-text);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+.post:hover {
+  box-shadow: var(--shadow-active);
+}
