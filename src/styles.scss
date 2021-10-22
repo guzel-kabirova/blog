@@ -1,1 +1,26 @@
 @import "src/app/styles/basic/main";
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.snow.css';
+
+.ql-editor {
+  border: 2px solid var(--color-main) !important;
+  font: var(--font-nav) !important;
+  height: 80px !important;
+}
+.ql-toolbar {
+  border-right: 2px solid var(--color-main) !important;
+  border-left: 2px solid var(--color-main) !important;
+  border-top: 2px solid var(--color-main) !important;
+}
+
+.ql-editor.ql-blank::before {
+  font: var(--font-nav) !important;
+  color: var(--color-grey-dark) !important;
+  content: 'Введите текст поста...';
+  left: 15px;
+  pointer-events: none;
+  position: absolute;
+  right: 15px;
+}
+
+

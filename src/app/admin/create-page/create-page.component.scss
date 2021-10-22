@@ -1,0 +1,21 @@
+.form {
+  width: 900px;
+  height: calc(100vh - 70px - 60px - 60px);
+  padding: 50px;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+.label-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.validation {
+  margin-top: 0;
+}
+

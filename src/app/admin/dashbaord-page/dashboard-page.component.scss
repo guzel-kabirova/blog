@@ -1,0 +1,57 @@
+:host {
+  margin: 0 60px;
+  width: 100vw;
+}
+
+input {
+  box-sizing: border-box;
+}
+
+table {
+  color: var(--color-black);
+  box-shadow: var(--shadow-default);
+  border-radius: var(--radius);
+  overflow: hidden;
+  width: 100%;
+
+  thead {
+    background-color: var(--color-grey);
+    font: var(--font-nav-bold);
+
+    th {
+      padding: 10px;
+    }
+
+  }
+
+  tbody {
+    font: var(--font-nav);
+
+    td {
+      text-align: center;
+      padding: 10px;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      button {
+        background-color: transparent;
+        border: none;
+        font-family: inherit;
+        color: var(--color-input-danger);
+
+        &:focus {
+          outline: none;
+        }
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
