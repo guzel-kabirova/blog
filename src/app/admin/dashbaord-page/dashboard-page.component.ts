@@ -1,7 +1,7 @@
-import {Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef} from '@angular/core';
-import {PostService} from '../../shared/services/post.service';
-import {Post} from '../../shared/interfaces';
-import {Subscription} from 'rxjs';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {PostFacadeService} from '../../core/services/post.facade.service';
+import {PostModel} from '../../core/models/post.model';
 
 @Component({
   selector: 'app-dashbord-page',
@@ -9,46 +9,22 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./dashboard-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardPageComponent implements OnInit, OnDestroy {
-
-  pSub$!: Subscription;
-  dSub$!: Subscription;
-  posts: Post[] = [];
+export class DashboardPageComponent implements OnInit {
   search = '';
-  isFetching = false;
 
-  constructor(private postService: PostService,
-              private ref: ChangeDetectorRef) {
+  public posts$: Observable<PostModel[]> = this.facade.posts$;
+  public isFetching$: Observable<boolean> = this.facade.isFetching$;
+
+  constructor(private facade: PostFacadeService) {
   }
 
   ngOnInit() {
-    this.isFetching = true;
-    this.pSub$ = this.postService.getAllPosts().subscribe(
-      response => {
-        this.posts = response;
-        this.isFetching = false;
-        this.ref.detectChanges();
-      },
-    );
+    this.facade.getAllPosts()
+      .subscribe();
   }
 
   remove(id: string) {
-    this.isFetching = true;
-    this.dSub$ = this.postService.deletePost(id)
-      .subscribe(() => {
-        this.posts = this.posts.filter(post => post.id !== id);
-        this.isFetching = false;
-        this.ref.detectChanges();
-      });
-  }
-
-  ngOnDestroy() {
-    if (this.pSub$) {
-      this.pSub$.unsubscribe();
-    }
-
-    if (this.dSub$) {
-      this.dSub$.unsubscribe();
-    }
+    this.facade.deletePost(id)
+      .subscribe();
   }
 }

@@ -53,6 +53,13 @@
     font: var(--font-nav-bold)
   }
 
+  .label-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+
   label {
     font: var(--font-nav-bold);
     margin-bottom: 10px;
@@ -100,3 +107,5 @@
   color: var(--color-black);
   margin-bottom: var(--space-l);
 }
+
+

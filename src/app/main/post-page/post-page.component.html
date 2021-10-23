@@ -1,0 +1,21 @@
+<button type="button"
+        class="btn-no-bg"
+        [routerLink]="['']"
+>
+  <img src="../../../assets/icons/arrow.svg" alt="Кнопка назад">Назад
+</button>
+<div *ngIf="post; else preloader">
+<div class="post">
+  <div class="post-info">
+    <h2>{{post.title}}</h2>
+    <div class="author">
+      <span>{{post.author}},</span>
+      <span>{{post.date | date}}</span>
+    </div>
+  </div>
+  <p>{{post.text}}</p>
+</div>
+</div>
+<ng-template #preloader>
+  <app-preloader></app-preloader>
+</ng-template>

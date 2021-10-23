@@ -9,8 +9,6 @@ import {Observable} from 'rxjs';
 @Injectable({providedIn: 'root'})
 export class PostService {
 
-  isFetching = false;
-
   constructor(private http: HttpClient) {
   }
 
@@ -33,12 +31,26 @@ export class PostService {
           .map(key => ({
             id: key,
             ...response[key],
-            date: new Date(response[key].date)
+            date: new Date(response[key].date),
           }));
       }));
   }
 
-  deletePost(id:string) {
-    return this.http.delete(`${environment.fbDbUrl}/posts/${id}.json`)
+  deletePost(id: string):Observable<void> {
+    return this.http.delete<void>(`${environment.fbDbUrl}/posts/${id}.json`);
   }
+
+  getById(id: string): Observable<Post> {
+    return this.http.get<Post>(`${environment.fbDbUrl}/posts/${id}.json`)
+      .pipe(map(post => ({
+        id,
+        ...post,
+        date: new Date(post.date),
+      })))
+  }
+
+  update(post: Post):Observable<Post> {
+    return this.http.patch<Post>(`${environment.fbDbUrl}/posts/${post.id}.json`, post)
+  }
+
 }

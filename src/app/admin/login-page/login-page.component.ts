@@ -25,6 +25,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.authService.isAuthenticated()) {
+      this.router.navigate(['/admin', 'dashboard'])
+    }
     this.createForm();
     this.route.queryParams.subscribe(params => {
       if (params['authAgain']) {
