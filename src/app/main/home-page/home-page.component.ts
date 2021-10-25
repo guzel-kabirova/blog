@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {PostService} from '../../shared/services/post.service';
-import {Post} from '../../shared/interfaces';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
+import {PostModel} from '../../core/models/post.model';
+import {PostFacadeService} from '../../core/services/post.facade.service';
 
 @Component({
   selector: 'app-home-page',
@@ -9,23 +9,14 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./home-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomePageComponent implements OnInit, OnDestroy {
-  posts: Post[] | undefined;
-  gSub$: Subscription | undefined;
-
-  constructor(private postService: PostService,
-              private ref: ChangeDetectorRef) {
+export class HomePageComponent implements OnInit {
+  constructor(private facade: PostFacadeService) {
   }
+
+  public posts$: Observable<PostModel[]> = this.facade.posts$;
 
   ngOnInit() {
-    this.gSub$ = this.postService.getAllPosts()
-      .subscribe(posts => {
-        this.posts = posts;
-        this.ref.detectChanges();
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.gSub$ && this.gSub$.unsubscribe();
+    this.facade.getAllPosts()
+      .subscribe();
   }
 }

@@ -1,9 +1,8 @@
-import {Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef} from '@angular/core';
-import {PostService} from '../../shared/services/post.service';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
-import {Post} from '../../shared/interfaces';
-import {Subscription} from 'rxjs';
+import {PostModel} from '../../core/models/post.model';
+import {PostFacadeService} from '../../core/services/post.facade.service';
 
 @Component({
   selector: 'app-post-page',
@@ -11,29 +10,25 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./post-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PostPageComponent implements OnInit, OnDestroy {
-  post: Post | undefined;
-  gSub$: Subscription | undefined;
+export class PostPageComponent implements OnInit {
+  post: PostModel | undefined;
 
-  constructor(private postService: PostService,
-              private route: ActivatedRoute,
-              private ref: ChangeDetectorRef,
+  constructor(
+    private route: ActivatedRoute,
+    private facade: PostFacadeService,
+    private cdr: ChangeDetectorRef,
   ) {
   }
 
   ngOnInit() {
-    this.gSub$ = this.route.params
+    this.route.params
       .pipe(
         switchMap(params => {
-          return this.postService.getById(params.id);
+          return this.facade.getById(params.id);
         }),
       ).subscribe(post => {
-        this.post = post;
-        this.ref.detectChanges();
-      });
-  }
-
-  ngOnDestroy() {
-    this.gSub$ && this.gSub$.unsubscribe();
+      this.post = post;
+      this.cdr.detectChanges();
+    });
   }
 }

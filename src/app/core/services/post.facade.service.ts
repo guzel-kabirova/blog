@@ -51,10 +51,9 @@ export class PostFacadeService {
         finalize(() => this.isFetching.next(false)));
   }
 
-  updatePost(post: Partial<PostModel>) {
+  updatePost(post: Partial<PostDto> & {id: string} ) {
     this.isFetching.next(true);
-
-    return this.repository.updatePost(post as unknown as PostDto)
+    return this.repository.updatePost(post)
       .pipe(
         first(),
         finalize(() => this.isFetching.next(false)));

@@ -57,10 +57,9 @@ export class LoginPageComponent implements OnInit {
       };
       this.isFetching = true;
       this.authService.login(user).subscribe(() => {
-          this.form!.reset();
+          this.form && this.form.reset();
           this.router.navigate(['/admin', 'dashboard']);
           this.isFetching = false;
-
         },
         error => {
           this.isFetching = false;
