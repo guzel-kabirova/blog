@@ -1,8 +1,6 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {PostService} from '../../shared/services/post.service';
-import {Post} from '../../shared/interfaces';
-import {Router} from '@angular/router';
+import {PostFacadeService} from '../../core/services/post.facade.service';
 
 @Component({
   selector: 'app-create-page',
@@ -12,10 +10,12 @@ import {Router} from '@angular/router';
 })
 export class CreatePageComponent implements OnInit {
 
-  form!: FormGroup;
+  form: FormGroup | undefined;
 
-  constructor(private formBuilder: FormBuilder,
-              private postService: PostService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private facade: PostFacadeService
+  ) {
 
   }
 
@@ -32,17 +32,12 @@ export class CreatePageComponent implements OnInit {
   }
 
   submit() {
-    if(this.form.invalid) {
-      return
+    if (this.form) {
+      if (this.form.invalid) {
+        return;
+      }
+      this.facade.createPost(this.form.value)
+        .subscribe(() => this.form && this.form.reset())
     }
-    const newPost: Post = {
-      ...this.form.value,
-       date: new Date()
-    }
-    this.postService.create(newPost)
-      .subscribe(
-        response => {
-          this.form.reset();
-        })
   }
 }

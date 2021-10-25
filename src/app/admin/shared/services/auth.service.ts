@@ -30,7 +30,9 @@ export class AuthService {
   login(user: User): Observable<FbAuthResponse> {
     const payload: User = { ...user, returnSecureToken: true};
     return this.http.post<FbAuthResponse>(API_URL + environment.apiKey, payload)
-      .pipe(tap(res => this.setToken(res)), catchError(err => {
+      .pipe(
+        tap(res => this.setToken(res)),
+        catchError(err => {
         return this.handleError(err);
       }));
   }

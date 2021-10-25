@@ -25,6 +25,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.authService.isAuthenticated()) {
+      this.router.navigate(['/admin', 'dashboard'])
+    }
     this.createForm();
     this.route.queryParams.subscribe(params => {
       if (params['authAgain']) {
@@ -54,10 +57,9 @@ export class LoginPageComponent implements OnInit {
       };
       this.isFetching = true;
       this.authService.login(user).subscribe(() => {
-          this.form!.reset();
+          this.form && this.form.reset();
           this.router.navigate(['/admin', 'dashboard']);
           this.isFetching = false;
-
         },
         error => {
           this.isFetching = false;

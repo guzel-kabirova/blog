@@ -1,1 +1,26 @@
-<p>edit-page works!</p>
+<div *ngIf="form; else preloader">
+<form class="form" [formGroup]="form" (submit)="submit()">
+  <h2 class="form-name">Редактировать</h2>
+  <div class="form-control">
+    <div class="label-container">
+      <label for="title">Заголовок</label><span class="validation"
+                                                *ngIf="form.get('title')?.invalid && form.get('title')?.touched">
+      Введите заголовок поста
+    </span>
+    </div>
+    <input type="text" id="title" formControlName="title" placeholder="Заголовок поста">
+  </div>
+  <div class="form-control">
+    <div class="label-container">
+      <label>Текст</label> <span class="validation" *ngIf="form.get('text')?.invalid && form.get('text')?.touched">
+      Введите текст поста
+    </span>
+    </div>
+    <quill-editor formControlName="text"></quill-editor>
+  </div>
+  <button type="submit" class="btn" [disabled]="form.invalid || (isFetching$ | async) ">Сохранить</button>
+</form>
+</div>
+<ng-template #preloader >
+  <app-preloader></app-preloader>
+</ng-template>

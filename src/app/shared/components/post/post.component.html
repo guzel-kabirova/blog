@@ -1,10 +1,9 @@
-<!--<div class="post" *ngIf="post" [routerLink]="['/post', post.id]">-->
-<!--  <div class="post-info">-->
-<!--  <h2 class="title">{{post.title}}</h2>-->
-<!--  </div>-->
-<!--  <div class="post-author">-->
-<!--  <span>{{post.author}}</span>-->
-<!--  <span>{{post.data}}</span>-->
-<!--  </div>-->
-<!--</div>-->
-<p>post</p>
+<div class="post" *ngIf="post" [routerLink]="['/post', post.id]">
+  <div class="post-info">
+  <h2 class="title">{{post.title}}</h2>
+  </div>
+  <div class="post-author">
+  <span>{{post.author}}</span>
+  <span>{{post.date | date}}</span>
+  </div>
+</div>
