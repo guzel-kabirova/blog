@@ -1,15 +1,13 @@
 .form {
   width: 700px;
-  height: 650px;
   padding: 125px 100px;
 
-  .message {
-    font: var(--font-nav);
-    color: var(--color-black);
-    margin: 20px 0;
-    border-radius: var(--radius);
-    background-color: var(--color-grey);
-    padding: 10px 20px;
+  &__name {
+
+  }
+
+  &__control {
+    margin-bottom: 20px;
   }
 
   .alert {

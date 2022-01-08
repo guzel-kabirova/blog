@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {PostModel} from '../../../core/models/post.model';
+
+import {PostModel} from '../../core/models/post.model';
 
 @Component({
   selector: 'app-post',

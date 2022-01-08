@@ -10,21 +10,21 @@
   margin-bottom: 30px;
   cursor: pointer;
 
-  .title {
+  &:hover {
+    box-shadow: var(--shadow-active);
+  }
+
+  &__title {
     color: var(--color-black);
     font: var(--font-subtitle);
     margin: 0;
   }
 
-  .post-author {
+  &__author {
     color: var(--color-grey-dark);
     font: var(--font-text);
     display: flex;
     flex-direction: column;
     gap: 6px;
   }
-}
-
-.post:hover {
-  box-shadow: var(--shadow-active);
 }

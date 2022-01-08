@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
+
 import {PostModel} from '../models/post.model';
 
 @Injectable({
@@ -9,10 +10,8 @@ export class PostStoreService {
   private posts: BehaviorSubject<PostModel[]> = new BehaviorSubject<PostModel[]>([]);
   public posts$: Observable<PostModel[]> = this.posts.asObservable();
 
-  constructor() {
-  }
-
   setPosts(posts: PostModel[]): void {
+    posts = posts.reverse();
     this.posts.next(posts);
   }
 

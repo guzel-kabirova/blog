@@ -1,25 +1,20 @@
-<form class="form" [formGroup]="form" (submit)="submit()">
+<form class="form" [formGroup]="form">
   <div class="message" *ngIf="message">{{message}}</div>
-  <h2 class="form-name">Войти в админ панель</h2>
-  <div class="form-control">
-    <label for="email">Почта</label>
-    <input type="email" id="email" formControlName="email">
-    <div class="validation" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
-      <div *ngIf="form.get('email')?.errors?.required">
-        Введите почту
-      </div>
-      <div *ngIf="form.get('email')?.errors?.email">
-        Введите почту в корректном формате
-      </div>
-    </div>
+  <h2>Войти в админ панель</h2>
+  <div class="form__control">
+    <tui-input formControlName="email">Почта</tui-input>
+    <tui-field-error formControlName="email"></tui-field-error>
   </div>
-  <div class="form-control">
-    <label for="password">Пароль</label>
-    <input type="password" id="password" formControlName="password">
-    <div class="validation" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
-      <div *ngIf="form.get('password')?.errors?.required">Введите пароль</div>
-    </div>
+  <div class="form__control">
+    <tui-input-password formControlName="password">Пароль</tui-input-password>
+    <tui-field-error formControlName="password"></tui-field-error>
   </div>
   <div class="alert" *ngIf="error$ | async as error">{{error}}</div>
-  <button type="submit" class="btn" [disabled]="form.invalid || isFetching">Отправить</button>
+  <button
+    tuiButton
+    [disabled]="form.invalid || isFetching"
+    (click)="submit()"
+  >
+    Отправить
+  </button>
 </form>

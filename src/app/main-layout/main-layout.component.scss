@@ -3,7 +3,7 @@
 
 .nav {
   height: 70px;
-  background-color: var(--color-main);
+  background-color: var(--color-main-bright);
   padding: 0 80px;
 
   .logo {
@@ -13,5 +13,6 @@
 }
 
 .container {
+  height: 100vh;
   padding: 60px 370px;
 }

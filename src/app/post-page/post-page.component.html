@@ -1,0 +1,18 @@
+<button type="button"
+        class="button"
+        [routerLink]="['']"
+>
+  <tui-svg src="tuiIconChevronLeft" alt="Кнопка назад"></tui-svg>Назад
+</button>
+<div *ngIf="post$ | async as post">
+<div class="post">
+  <div class="post__info">
+    <h2 class="post__title">{{post.title}}</h2>
+    <div class="post__author">
+      <span>{{post.author}},</span>
+      <span>{{post.date | date: 'short':null:'ru'}}</span>
+    </div>
+  </div>
+  <tui-editor-socket [content]="post.text"></tui-editor-socket>
+</div>
+</div>

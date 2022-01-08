@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {PreloaderComponent} from './preloader.component';
 
+import {PreloaderComponent} from './preloader.component';
 
 
 @NgModule({

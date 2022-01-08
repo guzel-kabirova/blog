@@ -3,10 +3,6 @@
   width: 100vw;
 }
 
-input {
-  box-sizing: border-box;
-}
-
 table {
   color: var(--color-black);
   box-shadow: var(--shadow-default);
@@ -35,6 +31,7 @@ table {
         text-decoration: none;
         color: var(--color-main);
         margin-right: 10px;
+
         &:hover {
           opacity: 0.8;
         }
@@ -49,10 +46,16 @@ table {
         &:focus {
           outline: none;
         }
+
         &:hover {
           opacity: 0.8;
         }
       }
     }
   }
+}
+
+.search {
+  width: 300px;
+  margin-bottom: 20px;
 }

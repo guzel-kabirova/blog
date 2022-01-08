@@ -1,20 +1,8 @@
 .form {
   width: 1000px;
   padding: 50px;
-}
 
-label {
-  margin-bottom: 0;
+  &__control {
+    margin-bottom: 20px;
+  }
 }
-
-.label-container {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  align-items: center;
-}
-
-.validation {
-  margin-top: 0;
-}
-

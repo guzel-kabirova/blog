@@ -3,12 +3,23 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../shared/services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../shared/interfaces';
+import {TUI_VALIDATION_ERRORS} from '@taiga-ui/kit';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: TUI_VALIDATION_ERRORS,
+      useValue: {
+        required: 'Это обязательное поле!',
+        email: 'Введите почту в корректном формате',
+        password: 'Это обязательное поле!',
+      }
+    }
+  ]
 })
 export class LoginPageComponent implements OnInit {
 

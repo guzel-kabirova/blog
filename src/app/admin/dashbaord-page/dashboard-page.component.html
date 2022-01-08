@@ -1,7 +1,7 @@
-<div class="form-control">
-  <input type="search" [(ngModel)]="search" placeholder="Введите текст для поиска...">
+<div class="search">
+  <tui-input [(ngModel)]="search">Введите текст для поиска...</tui-input>
 </div>
-<div *ngIf="(isFetching$ | async) === false; else preloader">
+<div>
 <table>
   <thead>
   <tr>
@@ -17,7 +17,7 @@
     <td>{{idx + 1}}</td>
     <td>{{post.author}}</td>
     <td>{{post.title}}</td>
-    <td>{{post.date | date}}</td>
+    <td>{{post.date | date: 'short':null:'ru'}}</td>
     <td>
       <a [routerLink]="['/admin', 'post', post.id, 'edit']">Редактировать</a>
       <button (click)="remove(post.id)">
@@ -28,8 +28,5 @@
   </tbody>
 </table>
 </div>
-<ng-template #preloader>
-  <app-preloader></app-preloader>
-</ng-template>
 
 
