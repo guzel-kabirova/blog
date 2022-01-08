@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {PostApiService} from './post.api.service';
-import {PostStoreService} from './post.store.service';
 import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
+
+import {PostApiService} from './post.api.service';
+import {PostStoreService} from './post.store.service';
 import {PostModel} from '../models/post.model';
 import {PostDto} from '../dto/post.dto';
 
@@ -35,11 +36,12 @@ export class PostRepositoryService {
       .pipe(map(response => new PostModel(response)));
   }
 
-  createPost(post: Partial<PostDto>): Observable<PostModel> {
+  createPost(post: Partial<PostDto> & {title: string, text: string, author: string, date: string}): Observable<PostModel> {
     return this.api.createPost(post)
       .pipe(
-        map(response => new PostModel(response)),
-        tap(post => this.store.addPost(post)),
+        map(response => new PostModel({...post, id: response.name})),
+        tap(post => this.store.addPost(post)
+        ),
       );
   }
 

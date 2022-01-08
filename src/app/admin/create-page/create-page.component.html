@@ -1,31 +1,32 @@
-<form class="form" [formGroup]="form" (submit)="submit()">
-  <h2 class="form-name">Создать пост</h2>
-  <div class="form-control">
-    <div class="label-container">
-      <label for="title">Заголовок</label><span class="validation"
-                                                *ngIf="form.get('title').invalid && form.get('title').touched">
-      Введите заголовок поста
-    </span>
+<form class="form" [formGroup]="form">
+  <h2>Создание поста</h2>
+  <div class="form__content">
+    <div class="form__control">
+      <tui-input formControlName="title">
+        Введите заголовок
+      </tui-input>
+      <tui-field-error formControlName="title"></tui-field-error>
     </div>
-    <input type="text" id="title" formControlName="title" placeholder="Заголовок поста">
-  </div>
-  <div class="form-control">
-    <div class="label-container">
-      <label for="author">Автор</label> <span class="validation"
-                                              *ngIf="form.get('author').invalid && form.get('author').touched">
-      Введите автора поста
-    </span>
+    <div class="form__control">
+      <tui-input formControlName="author">
+        Введите автора
+      </tui-input>
+      <tui-field-error formControlName="author"></tui-field-error>
     </div>
-    <input type="text" id="author" formControlName="author" placeholder="Автор поста">
-  </div>
-  <div class="form-control">
-    <div class="label-container">
-      <label>Текст</label> <span class="validation" *ngIf="form.get('text').invalid && form.get('text').touched">
-      Введите текст поста
-    </span>
+    <div class="form__control">
+      <tui-editor
+        formControlName="text"
+      >
+        Введите текст поста
+      </tui-editor>
+      <tui-field-error formControlName="text"></tui-field-error>
     </div>
-    <quill-editor formControlName="text"></quill-editor>
   </div>
-  <button type="submit" class="btn" [disabled]="form.invalid">Отправить</button>
+  <button
+    tuiButton
+    type="button"
+    [disabled]="form.invalid"
+    (click)="submit()"
+  >Отправить
+  </button>
 </form>
-

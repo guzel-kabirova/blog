@@ -1,0 +1,22 @@
+.alert-wrapper {
+  position: fixed;
+  bottom: 30px;
+  left: 60px;
+  max-width: 400px;
+  border-radius: var(--radius);
+  color: var(--color-white);
+  font: var(--font-nav-bold);
+
+  .alert {
+    padding: 20px;
+  }
+
+  .success {
+    background-color: var(--color-input-success);
+  }
+
+  .danger {
+    background-color: var(--color-input-danger);
+  }
+
+}

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+
 import {PostStoreService} from './post.store.service';
 import {PostRepositoryService} from './post.repository.service';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {finalize, first, tap} from 'rxjs/operators';
 import {PostModel} from '../models/post.model';
 import {PostDto} from '../dto/post.dto';
 
@@ -10,8 +10,6 @@ import {PostDto} from '../dto/post.dto';
   providedIn: 'root',
 })
 export class PostFacadeService {
-  private isFetching: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isFetching$: Observable<boolean> = this.isFetching.asObservable();
 
   public posts$: Observable<PostModel[]> = this.store.posts$;
 
@@ -22,41 +20,26 @@ export class PostFacadeService {
   }
 
   getAllPosts() {
-    this.isFetching.next(true);
-    return this.repository.loadPosts()
-      .pipe(first(), finalize(() => this.isFetching.next(false)));
+    return this.repository.loadPosts();
   }
 
-  createPost(newPost: Partial<PostModel>) {
-    this.isFetching.next(true);
+  createPost(newPost: Partial<PostModel> & { title: string, text: string, author: string }) {
     const post = {
       ...newPost,
       date: new Date().toString(),
     };
-    return this.repository.createPost(post)
-      .pipe(first(), finalize(() => this.isFetching.next(false)));
+    return this.repository.createPost(post);
   }
 
   deletePost(id: string) {
-    this.isFetching.next(true);
-    return this.repository.deletePost(id)
-      .pipe(first(), finalize(() => this.isFetching.next(false)));
+    return this.repository.deletePost(id);
   }
 
   getById(id: string) {
-    this.isFetching.next(true);
-    return this.repository.getPostById(id)
-      .pipe(
-        first(),
-        finalize(() => this.isFetching.next(false)));
+    return this.repository.getPostById(id);
   }
 
-  updatePost(post: Partial<PostDto> & {id: string} ) {
-    this.isFetching.next(true);
-    return this.repository.updatePost(post)
-      .pipe(
-        first(),
-        finalize(() => this.isFetching.next(false)));
+  updatePost(post: Partial<PostDto> & { id: string }) {
+    return this.repository.updatePost(post);
   }
-
 }

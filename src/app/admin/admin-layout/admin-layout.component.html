@@ -1,5 +1,6 @@
+<app-alert></app-alert>
 <nav class="nav">
-  <img src="../../../assets/icons/blogLogo.svg" alt="blog logo" class="logo">
+  <img src="../../../assets/icons/blogLogoAdmin.svg" alt="blog logo" class="logo">
   <ul *ngIf="isAuth()">
     <li >
       <a [routerLink]="['/admin', 'dashboard']" routerLinkActive="activeLink" [routerLinkActiveOptions]="{exact: true}">Главная</a>
@@ -12,6 +13,7 @@
     </li>
   </ul>
 </nav>
+<app-preloader></app-preloader>
 <div class="container">
   <router-outlet></router-outlet>
 </div>

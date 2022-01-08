@@ -1,0 +1,11 @@
+<ng-container *ngIf="alert$ | async as alert">
+  <div class="alert-wrapper" *ngIf="alert.text"
+  >
+    <div class="alert" [ngClass]="{
+  success: alert.type === 'success',
+  danger: alert.type === 'danger'
+  }">
+      {{alert.text}}
+    </div>
+  </div>
+</ng-container>

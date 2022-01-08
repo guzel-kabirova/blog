@@ -1,6 +1,6 @@
-@import "../../styles/mixins/mixins";
+@import "../styles/mixins/mixins";
 
-.btn-no-bg {
+.button {
   @include center-all;
   background-color: transparent;
   border: 0;
@@ -8,10 +8,6 @@
   font: var(--font-nav-bold);
   color: var(--color-grey-dark);
   margin-bottom: var(--space-xxl);
-
-  img {
-    margin-right: 6px;
-  }
 }
 
 .post {
@@ -20,30 +16,24 @@
   border-radius: var(--radius);
   box-shadow: var(--shadow-default);
 
-  .post-info {
+  &__info {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     margin-bottom: var(--space-l);
-    h2 {
-      font: var(--font-title);
-      color: var(--color-black);
-      margin: 0;
-    }
-
-    .author {
-      display: flex;
-      flex-direction: column;
-      color: var(--color-grey-dark);
-      font: var(--font-text);
-      padding: 0 0 10px;
-    }
   }
 
-  p {
+  &__title {
+    font: var(--font-title);
     color: var(--color-black);
-    font: var(--font-text);
     margin: 0;
   }
 
+  &__author {
+    display: flex;
+    flex-direction: column;
+    color: var(--color-grey-dark);
+    font: var(--font-text);
+    padding: 0 0 10px;
+  }
 }
